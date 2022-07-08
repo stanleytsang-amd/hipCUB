@@ -24,7 +24,7 @@
 
 // HIP API
 #include "hipcub/device/device_reduce.hpp"
-#include "../test/hipcub/bfloat16.hpp"
+#include "../test/hipcub/common_test_header.hpp"
 
 #ifndef DEFAULT_N
 const size_t DEFAULT_N = 1024 * 1024 * 128;
@@ -42,7 +42,7 @@ void run_benchmark(benchmark::State& state,
                    const hipStream_t stream,
                    BinaryFunction reduce_op)
 {
-    std::vector<T> input = benchmark_utils::get_random_data<T>(size, T(0), T(1000));
+    std::vector<T> input = test_utils::get_random_data<T>(size, 1.0f, 100.0f, 1234);
 
     T * d_input;
     T * d_output;
@@ -148,7 +148,8 @@ int main(int argc, char *argv[])
     // Add benchmarks
     std::vector<benchmark::internal::Benchmark*> benchmarks =
     {
-        CREATE_BENCHMARK(test_utils::bfloat16, hipcub::Sum),
+        CREATE_BENCHMARK(test_utils::half, hipcub::Sum),
+        CREATE_BENCHMARK(test_utils::half, hipcub::Max),
     };
 
     // Use manual timing
