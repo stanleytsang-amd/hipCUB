@@ -140,7 +140,7 @@ cmake_executable="cmake"
 cmake_common_options=""
 
 if [[ "${build_clients}" == true ]]; then
-    build_tests="-DBUILD_TEST=ON"
+    build_tests="-DBUILD_BENCHMARK=ON -DBUILD_TEST=OFF"
 else
     build_tests="-DBUILD_TEST=OFF"
 fi
