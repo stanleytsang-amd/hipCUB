@@ -150,6 +150,8 @@ int main(int argc, char *argv[])
     {
         CREATE_BENCHMARK(test_utils::half, hipcub::Sum),
         CREATE_BENCHMARK(test_utils::half, hipcub::Max),
+        CREATE_BENCHMARK(float, hipcub::Sum),
+        CREATE_BENCHMARK(float, hipcub::Max),        
     };
 
     // Use manual timing

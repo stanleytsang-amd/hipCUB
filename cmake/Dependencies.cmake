@@ -115,7 +115,7 @@ else()
 endif()
 
 # Test dependencies
-if(BUILD_TEST)
+if(BUILD_TEST OR BUILD_BENCHMARK)
   if(NOT DEPENDENCIES_FORCE_DOWNLOAD)
     # Google Test (https://github.com/google/googletest)
     find_package(GTest QUIET)

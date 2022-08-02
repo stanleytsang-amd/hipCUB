@@ -25,7 +25,7 @@
 // HIP API
 #include "hipcub/block/block_reduce.hpp"
 #include "hipcub/thread/thread_operators.hpp"
-
+#include "../test/hipcub/common_test_header.hpp"
 
 #ifndef DEFAULT_N
 const size_t DEFAULT_N = 1024 * 1024 * 32;
@@ -162,17 +162,10 @@ void add_benchmarks(std::vector<benchmark::internal::Benchmark*>& benchmarks,
     std::vector<benchmark::internal::Benchmark*> new_benchmarks =
     {
         // When block size is less than or equal to warp size
-        BENCHMARK_TYPE(int, 64),
+        BENCHMARK_TYPE(test_utils::half, 64),
         BENCHMARK_TYPE(float, 64),
-        BENCHMARK_TYPE(double, 64),
-        BENCHMARK_TYPE(int8_t, 64),
-        BENCHMARK_TYPE(uint8_t, 64),
-
-        BENCHMARK_TYPE(int, 256),
+        BENCHMARK_TYPE(test_utils::half, 256),
         BENCHMARK_TYPE(float, 256),
-        BENCHMARK_TYPE(double, 256),
-        BENCHMARK_TYPE(int8_t, 256),
-        BENCHMARK_TYPE(uint8_t, 256),
     };
     benchmarks.insert(benchmarks.end(), new_benchmarks.begin(), new_benchmarks.end());
 }
